@@ -6,5 +6,13 @@
 
 module.exports = {
   siteName: 'Gridsome',
-  plugins: []
+  plugins: [
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'BlogPost', // 名字可以自定义的
+        path: './content/blog/**/*.md',
+      }
+    }
+  ]
 }
