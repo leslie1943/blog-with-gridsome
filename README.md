@@ -63,4 +63,41 @@ Each collection will add two root fields to the GraphQL schema that are used to 
 
 #### gridsomm 应用
 - gridsome 关心的是将模板和数据预渲染的静态html
+
+#### 预取 strapi 服务的数据
+- 使用插件 `@gridsome/source-strapi` 加载数据
+
+#### 查询分页数据
+- `GraphQL` 的查询参数
+query($page:Int) {
+  posts: allStrapiPost(perPage:2,page:$page) @paginate {
+    pageInfo {
+      totalPages
+      currentPage
+    }
+    edges {
+      node {
+        id
+        title
+        content
+        created_at
+        tags {
+          id
+          title
+        }
+        created_by {
+          id
+          firstname
+          lastname
+        }
+      }
+    }
+  }
+}
+- `GridSome` 的 `Pager` 组件 import { Pager } from 'gridsome'
+- `<Pager :info="$page.posts.pageInfo" />`
+
+
+#### markdown-it
+- 使用 `markdown-it`显示markdown文本
 - 
