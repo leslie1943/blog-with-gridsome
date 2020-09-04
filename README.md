@@ -100,4 +100,74 @@ query($page:Int) {
 
 #### markdown-it
 - 使用 `markdown-it`显示markdown文本
-- 
+
+
+#### 服务端安装
+- 安装MySql `sudo apt-get install mysql-server mysql-client`
+- 查看 `mysql --version`
+- `sudo mysql_secure_installation`
+
+#### 解决无法登录的问题
+打开MySQL目录下的配置文件(我的目录是/etc/mysql/mysql.conf.d/mysqld.cnf, 可能有的系统是my.ini)
+在文件的最后添加一行 `skip-grant-tables` 保存并关闭文件
+2、重启MySQL服务(`service mysql restart`)
+
+3.在命令行中输入 `mysql -u root -p` (不输入密码)，回车即可进入数据库
+
+4. show databases; 查看当前的数据库
+5. create database blog;
+
+create user "suzhen'@'%" identified by '1234qwer';
+
+#### 创建 / 查看 user
+```bash
+use mysql
+# 创建本地账户
+create user 'moon'@'localhost' identified by '1234qwer';  # moon / 1234qwer
+GRANT all privileges ON *.* TO `moon`@`localhost`
+
+create user 'moon'@'%' identified by '1234qwer';  # moon / 1234qwer
+GRANT all privileges ON *.* TO `moon`@`%`
+flush privileges
+```
+
+
+#### 解决 MYSQL 2003问题
+修改 `etc/mysql/mysql.conf.d/musqld.cnf` 文件,
+```bash
+# 原
+bind-address = 127.0.0.1
+# 修改为
+bind-address = 0.0.0.0
+```
+
+#### 解决 MYSQL 1003问题
+```bash
+UPDATE USER SET Host='%' where User='你的账号';
+flush privileges
+```
+
+#### 解决 MYSQL 2059问题
+```bash
+ALTER USER 'moon'@'%' IDENTIFIED BY '你的密码' PASSWORD EXPIRE NEVER;
+ALTER USER 'moon'@'%' IDENTIFIED WITH mysql_native_password BY '你的密码';
+```
+
+
+#### git 安装不成功
+之前安装的时候报错
+```
+E: Failed to fetch http://mirrors.cloud.aliyuncs.com/ubuntu/pool/main/c/curl/libcurl3-gnutls_7.68.0-1ubuntu2.1_amd64.deb  404  Not Found [IP: 100.100.2.148 80]
+E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+```
+- `apt-get update`
+- `apt install git`
+- `git`
+
+#### 执行 strapi
+- git clone https://github.com/leslie1943/strapi-4-gridsome.git
+- cd your_dir
+- npm install
+- npm run build
+- npm run start
+- pm2 start npm -- run start --name strapi-blog

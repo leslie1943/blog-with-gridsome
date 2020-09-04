@@ -28,6 +28,7 @@
               <div class="form-group floating-label-form-group controls">
                 <label>Name</label>
                 <input
+                  v-model="form.name"
                   type="text"
                   class="form-control"
                   placeholder="Name"
@@ -42,6 +43,7 @@
               <div class="form-group floating-label-form-group controls">
                 <label>Email Address</label>
                 <input
+                  v-model="form.email"
                   type="email"
                   class="form-control"
                   placeholder="Email Address"
@@ -57,6 +59,7 @@
                 <label>Phone Number</label>
                 <input
                   type="tel"
+                  v-model="form.phone"
                   class="form-control"
                   placeholder="Phone Number"
                   id="phone"
@@ -70,6 +73,7 @@
               <div class="form-group floating-label-form-group controls">
                 <label>Message</label>
                 <textarea
+                  v-model="form.message"
                   rows="5"
                   class="form-control"
                   placeholder="Message"
@@ -82,7 +86,12 @@
             </div>
             <br />
             <div id="success"></div>
-            <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+            <button
+              @click.prevent="onSubmit"
+              type="submit"
+              class="btn btn-primary"
+              id="sendMessageButton"
+            >Send</button>
           </form>
         </div>
       </div>
@@ -91,10 +100,35 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'ContactPage',
   metaInfo: {
     title: 'Contact us'
+  },
+  data() {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      }
+    }
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        const { data, statusText } = await axios({
+          method: 'POST',
+          url: this.GRIDSOME_API_URL + '/contacts',
+          data: this.form
+        })
+        window.alert('发送成功!')
+      } catch (e) {
+        window.alert('发送失败,请重试')
+      }
+    }
   }
 }
 </script>
