@@ -33,7 +33,7 @@
               >{{edge.node.created_by.firstname + edge.node.created_by.lastname}}</a>
               on {{edge.node.created_at}}
             </p>
-            <div v-html="mdToHtml($edge.node.content)"></div>
+            <div v-html="mdToHtml(edge.node.content)"></div>
             <p>
               <span v-for="tag in edge.node.tags" :key="tag.id">
                 <g-link :to="`/tag/${tag.id}`">{{tag.title}}</g-link>&nbsp;&nbsp;
