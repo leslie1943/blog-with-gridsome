@@ -170,4 +170,4 @@ E: Unable to fetch some archives, maybe run apt-get update or try with --fix-mis
 - npm install
 - npm run build
 - npm run start
-- pm2 start npm -- run start --name strapi-blog
+- pm2 start npm -- run start --name="strapi-blog"
