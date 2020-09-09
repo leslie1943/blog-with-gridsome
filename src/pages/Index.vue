@@ -33,7 +33,7 @@
               >{{edge.node.created_by.firstname + edge.node.created_by.lastname}}</a>
               on {{edge.node.created_at}}
             </p>
-            <p>{{edge.node.content}}</p>
+            <div v-html="mdToHtml($edge.node.content)"></div>
             <p>
               <span v-for="tag in edge.node.tags" :key="tag.id">
                 <g-link :to="`/tag/${tag.id}`">{{tag.title}}</g-link>&nbsp;&nbsp;
@@ -96,6 +96,8 @@ query($page: Int) {
 
 <script>
 import { Pager } from 'gridsome'
+import MarkdownIt from 'markdown-it'
+const md = new MarkdownIt()
 
 export default {
   name: 'HomePage',
@@ -106,6 +108,11 @@ export default {
   computed: {
     general() {
       return this.$page.general.edges[0].node
+    }
+  },
+  methods: {
+    mdToHtml(markdown) {
+      return md.render(markdown)
     }
   }
 }

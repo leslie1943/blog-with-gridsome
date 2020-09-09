@@ -63,7 +63,6 @@ query($id: ID!) {
 <script>
 import MarkdownIt from 'markdown-it'
 const md = new MarkdownIt()
-console.info(md.render('# hello'))
 export default {
   name: 'PostPage',
   methods: {
