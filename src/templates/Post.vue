@@ -19,7 +19,7 @@
                 <a
                   href="#"
                 >{{$page.post.created_by.firstname + ' ' + $page.post.created_by.lastname}}</a>
-                on {{$page.post.created_at}}
+                on {{$page.post.created_at | date('YYYY-MM-DD')}}
               </span>
             </div>
           </div>

@@ -31,9 +31,10 @@
               <a
                 href="#"
               >{{edge.node.created_by.firstname + edge.node.created_by.lastname}}</a>
-              on {{edge.node.created_at | date('YYYY-MM-DD ')}}
+              on {{edge.node.created_at | date('YYYY-MM-DD')}}
             </p>
-            <div v-html="mdToHtml(edge.node.content)"></div>
+            <!-- <div v-html="mdToHtml(edge.node.content)"></div> -->
+            <div>点击标题查看详情</div>
             <p>
               <span v-for="tag in edge.node.tags" :key="tag.id">
                 <g-link :to="`/tag/${tag.id}`">{{tag.title}}</g-link>&nbsp;&nbsp;
@@ -121,6 +122,7 @@ export default {
 <style>
 .pager a {
   padding: 10px;
+  font-size: 16px;
 }
 </style>>
 
