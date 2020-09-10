@@ -31,7 +31,7 @@
               <a
                 href="#"
               >{{edge.node.created_by.firstname + edge.node.created_by.lastname}}</a>
-              on {{edge.node.created_at}}
+              on {{edge.node.created_at | date('YYYY-MM-DD ')}}
             </p>
             <div v-html="mdToHtml(edge.node.content)"></div>
             <p>
