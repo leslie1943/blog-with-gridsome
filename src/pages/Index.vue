@@ -103,7 +103,8 @@ const md = new MarkdownIt()
 export default {
   name: 'HomePage',
   metaInfo: {
-    title: 'Hello, world!'
+    // title: 'Hello, world!'
+    title: '二年11班消息站首页'
   },
   components: { Pager },
   computed: {

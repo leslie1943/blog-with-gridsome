@@ -3,7 +3,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <g-link class="navbar-brand" to="/">Start Bootstrap</g-link>
+        <!-- <g-link class="navbar-brand" to="/">Start Bootstrap</g-link> -->
+        <g-link class="navbar-brand" to="/">二年11班 小喇叭</g-link>
+
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
