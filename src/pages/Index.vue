@@ -56,7 +56,7 @@
 
 <page-query>
 query($page: Int) {
-  posts: allStrapiPost(perPage: 10, page: $page) @paginate {
+    posts: allStrapiPost(perPage: 10, page: $page,sort: [ { by: "updated_at" ,order:DESC}]) @paginate {
     pageInfo {
       totalPages
       currentPage
