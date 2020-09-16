@@ -16,12 +16,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview" v-for="post in $page.tag.posts" :key="post.id">
+          <div class="post-preview" v-for="post in posts" :key="post.id">
             <g-link :to="`/post/${post.id}`">
               <h2 class="post-title">{{post.title}}</h2>
             </g-link>
-            <p class="post-meta">Posted on {{post.created_at }}</p>
-            <div v-html="mdToHtml(post.content)"></div>
+            <p class="post-meta">Posted on {{post.created_at | date('YYYY-MM-DD') }}</p>
+            <!-- <div v-html="mdToHtml(post.content)"></div> -->
             <!-- <p>
               <span v-for="tag in edge.node.tags" :key="tag.id">
                 <g-link :to="`/tag/${tag.id}`">{{tag.title}}</g-link>&nbsp;&nbsp;
@@ -65,7 +65,12 @@ export default {
     mdToHtml(markdown) {
       return md.render(markdown)
     }
-  }
+  },
+  computed: {
+    posts() {
+      return this.$page.tag.posts ? this.$page.tag.posts.reverse() : []
+    }
+  },
 }
 </script>
 
