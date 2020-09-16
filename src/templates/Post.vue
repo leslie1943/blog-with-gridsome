@@ -13,7 +13,7 @@
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
               <h1>{{$page.post.title}}</h1>
-              <h2 class="subheading">no sub title :(</h2>
+              <!-- <h2 class="subheading">no sub title :(</h2> -->
               <span class="meta">
                 Posted by
                 <a
